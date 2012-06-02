@@ -5,10 +5,10 @@ Class Games extends Resource {
 		$this->params = array(
 			'table' => 'games',
 			'view' => 'games',
-			'view_fields' => 'id, created, won, winner',
-			'put_fields' => 'id, won, winner',
-			'post_fields' =>	'created, won, winner',
-			'child_resources' => 'players, moves'
+			'view_fields' => 'id, status',
+			'put_fields' => 'id, status',
+			'post_fields' =>	'status',
+			'child_resources' => 'players'
 		);
 	}
 }

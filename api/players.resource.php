@@ -7,10 +7,10 @@ Class Players extends Resource {
 		$this->params = array(
 			'table' => 'players',
 			'view' => 'players',
-			'view_fields' => 'id, twitterid, name',
-			'put_fields' => 'id, twitterid, name',
-			'post_fields' =>	'twitterid, name',
-			'child_resources' => 'trips'
+			'view_fields' => 'id, color, game_id',
+			'put_fields' => 'id, color, game_id',
+			'post_fields' =>	'color, game_id',
+			'child_resources' => 'moves'
 		);
 	}
 }

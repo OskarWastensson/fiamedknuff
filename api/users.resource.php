@@ -5,10 +5,10 @@ Class Users extends Resource {
 		$this->params = array(
 			'table' => 'users',
 			'view' => 'users',
-			'view_fields' => 'id',
-			'put_fields' => 'id',
-			'post_fields' => '',
-			'child_resources' => ''
+			'view_fields' => 'id, name, email',
+			'put_fields' => 'id, name, email',
+			'post_fields' => 'name, email',
+			'child_resources' => 'players'
 		);
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 // Base class for resources. Includes all sql logic
 abstract class Resource{
-	
+
 	protected $params;
 	public $data;
 
@@ -13,11 +13,13 @@ abstract class Resource{
  
 		// Replace special 'me' keyword with logged in user id. 
 		if(strtolower($id) == 'me') {
-			$id = $_SESSION['access_token']['user_id']; // insert logged in user
+			// insert logged in user
+			$id = $_SESSION['access_token']['user_id']; 
 		};
 
 		if(strtolower($pid) == 'me') {
-			$pid = $_SESSION['access_token']['user_id']; // insert logged in user
+			// insert logged in user
+			$pid = $_SESSION['access_token']['user_id']; 
 		};
 
 		// make sure any other strings are lost.
@@ -27,36 +29,36 @@ abstract class Resource{
 		
 		switch($method) {
 			case 'GET':
-					$this->get($id, $offset, $parent, $pid, $ancestors);
+				$this->get($id, $offset, $parent, $pid, $ancestors);
 				break;
 			case 'POST':
-					$id = $this->post($data);
-					if($parent) {
-						$this->attach($id, $parent, $pid);
-					} else {
-						$this->get($id);
-					} 
+				$id = $this->post($data);
+				if($parent) {
+					$this->attach($id, $parent, $pid);
+				} else {
+					$this->get($id);
+				} 
 				break;
 			case 'PUT':
-					if($data) {
-						$this->put($id, $data);
-					}
-					if($parent) {
-						$this->attach($id, $parent, $pid);
-					} else {
-						$this->get($id);
-					}
+				if($data) {
+					$this->put($id, $data);
+				}
+				if($parent) {
+					$this->attach($id, $parent, $pid);
+				} else {
+					$this->get($id);
+				}
 				break;
 			case 'DELETE':
-					if($parent) {
-						$this->detach($id, $parent);
-						$this->get($id);
-					} else {
-						$this->delete($id);
-					}
+				if($parent) {
+					$this->detach($id, $parent);
+					$this->get($id);
+				} else {
+					$this->delete($id);
+				}
 				break;
 			default:
-					$this->data = error(REQUEST_ERROR);
+				$this->data = error(REQUEST_ERROR);
 		}
 	}
 
@@ -69,7 +71,7 @@ abstract class Resource{
 		} elseif ($parent) {
 			$parent = strtolower($parent);
 			if(strstr($this->params['view_fields'], $parent)) {
-				$where_sql = "WHERE $parent = " . mysql_real_escape_string($pid);
+				$where_sql = "WHERE {$parent}_id = " . mysql_real_escape_string($pid);
 				$limit_sql = "LIMIT $offset, 0";
 			} else {
 				error(REQUEST_ERROR);
@@ -98,7 +100,7 @@ abstract class Resource{
 			foreach($child_resources as $resource) {
 				if(!strstr($ancestors, $resource)) {
 					require_once($resource . '.resource.php');    
-					$childs_ancestors = $ancestors . ', ' . strtolower(get_class($this));			
+					$childs_ancestors = $ancestors . ', ' . strtolower(get_class($this));
 					$obj = new $resource('GET', '', null, get_class($this), $id, $childs_ancestors);
 					$this->data[0][$resource] = $obj->data;
 				}
@@ -128,7 +130,7 @@ abstract class Resource{
 		// Turn fields list and data into sql query part
 		$fields = explode(', ',$this->params['post_fields']);
 		$update_fields = array();
- 		foreach($fields as $field){
+		foreach($fields as $field){
 			if (isset($data[$field])){
 				$value = $data[$field];
 				$update_fields[] = "$field='$value'";
@@ -212,7 +214,7 @@ abstract class Resource{
 	function detach($id, $parent) {
 		$query = "
 			UPDATE {$this->params['table']}
-			SET $parent = 0
+			SET {$parent}_id = 0
 			WHERE id = " . mysql_escape_string($id);
 		mysql_query($query);
 	}
@@ -221,11 +223,9 @@ abstract class Resource{
 	function attach($id, $parent, $pid) {
 		$query = "
 			UPDATE {$this->params['table']}
-			SET $parent = $pid
+			SET {$parent}_id = $pid
 			WHERE id = " . mysql_escape_string($id);
 		mysql_query($query);
 	}
-
 }
- 
 ?>
