@@ -1,0 +1,41 @@
+body { 
+	margin: 0;
+	padding: 0; 
+}
+
+div.boardWrapper{
+	margin: 0 auto;
+	width: 600px;
+	height: 600px;
+	display: block;
+	background: url('../images/board.png') 0 0 no-repeat;
+	padding: 16px 0 0 12px;
+}
+
+div.home {
+	width: 210px;
+	height: 200px;
+	border: 1px solid black;
+	float: left;
+}
+
+span {
+	width: 45px;
+	height: 45px;
+	border: 1px solid black;
+	display: block;
+	float: left;
+	margin: 0px 6px 5px 0;
+}
+
+.topWrapper, .bottomWrapper {
+	width: 160px;
+	float: left;
+	display: block;
+}
+
+.middleWrapper {  
+	display: block;
+	float: left;
+	height: 159px;
+}
