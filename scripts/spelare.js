@@ -1,3 +1,5 @@
 function spelare() {
-	this.
+	this.antalpjaser = 4;
 }
+
+var pjaser = new spelare();
