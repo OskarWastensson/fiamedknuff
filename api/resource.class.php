@@ -7,10 +7,10 @@ abstract class Resource{
 
 	abstract function set_params();
 
-	function __construct($method, $id, $offset = 0, $data = null, $parent = null, 
+	function __construct($method, $id, $offsets = 0, $data = null, $parent = null, 
 			$pid = null, $ancestors = ''){
 		$this->set_params();
- 
+		
 		// Replace special 'me' keyword with logged in user id. 
 		if(strtolower($id) == 'me') {
 			// insert logged in user
@@ -25,11 +25,10 @@ abstract class Resource{
 		// make sure any other strings are lost.
 		$id = intval($id);
 		$pid = intval($pid);
-		$offset = intval($offset);
 		
 		switch($method) {
 			case 'GET':
-				$this->get($id, $offset, $parent, $pid, $ancestors);
+				$this->get($id, $offsets, $parent, $pid, $ancestors);
 				break;
 			case 'POST':
 				$id = $this->post($data);
@@ -51,9 +50,12 @@ abstract class Resource{
 				break;
 			case 'DELETE':
 				if($parent) {
+					echo "Bad santa"; die();
 					$this->detach($id, $parent);
 					$this->get($id);
 				} else {
+					echo "#";
+					die();
 					$this->delete($id);
 				}
 				break;
@@ -63,27 +65,32 @@ abstract class Resource{
 	}
 
 	// Return data from a table row, or several rows.
-	function get($id, $offset = 0, $parent = null, $pid = null, $ancestors = '') {
+	function get($id, $offsets = 0, $parent = null, $pid = null, $ancestors = '') {
 		// Create Where clause
-		$where_sql = "";
+		$where_sql = '';
+		$limit_sql = '';
+		
+		if(isset($offsets[strtolower(get_class($this))])) {
+			$offset = intval($offsets[strtolower(get_class($this))]);
+			$limit_sql = "LIMIT $offset, 18446744073709551615";
+		}
+		
 		if($id) {
-			$where_sql = "WHERE id = " . mysql_real_escape_string($id);      
+			$where_sql = "WHERE id = $id";      
 		} elseif ($parent) {
 			$parent = strtolower($parent);
-			if(strstr($this->params['view_fields'], $parent)) {
-				$where_sql = "WHERE {$parent}_id = " . mysql_real_escape_string($pid);
-				$limit_sql = "LIMIT $offset, 0";
-			} else {
-				error(REQUEST_ERROR);
-			}
+			if(strstr($this->params['view_fields'], "{$parent}_id")) {
+				$where_sql = "WHERE {$parent}_id = $pid";
+			} 
 		}
+		
 		$query = "
 			SELECT {$this->params['view_fields']}
 			FROM {$this->params['view']}
 			$where_sql
 			$limit_sql
 		";
-
+		
 		if($result = mysql_query($query)) {
 			$resource = array();
 			while($row = mysql_fetch_assoc($result)){
@@ -101,7 +108,8 @@ abstract class Resource{
 				if(!strstr($ancestors, $resource)) {
 					require_once($resource . '.resource.php');    
 					$childs_ancestors = $ancestors . ', ' . strtolower(get_class($this));
-					$obj = new $resource('GET', '', null, get_class($this), $id, $childs_ancestors);
+					$obj = new $resource('GET', '', $offsets, null, 
+							get_class($this), $id, $childs_ancestors);
 					$this->data[0][$resource] = $obj->data;
 				}
 			}
@@ -115,7 +123,8 @@ abstract class Resource{
 							if(!strstr($ancestors, $resource)) {
 							require_once($resource . '.resource.php');    
 							$childs_ancestors = $ancestors . ', ' . strtolower(get_class($this));
-							$obj = new $resource('GET', '', null, get_class($this), $id, $childs_ancestors);
+							$obj = new $resource('GET', '', $offsets, null, 
+									get_class($this), $id, $childs_ancestors);
 							$this->data[$key][$resource] = $obj->data;
 						}
 					}
@@ -156,7 +165,8 @@ abstract class Resource{
 				if(isset($data[$resource])) {
 					foreach($data[$resource] as $i => $subset) {
 						require_once($resource . '.resource.php');    
-						$obj = new $resource('POST', '', $subset, get_class($this), $id);
+						$obj = new $resource('POST', '', $subset, 
+							get_class($this), $id);
 					}
 				}
 			}
@@ -202,9 +212,9 @@ abstract class Resource{
 
 	// Deletes a resource
 	function delete($id){
-		$query = "
+		echo $query = "
 			DELETE FROM {$this->params['table']}
-			WHERE id='$id'
+			WHERE id = '$id'
 		";
 		mysql_query($query);
 		return array('id' => $id, 'action' => 'delete');

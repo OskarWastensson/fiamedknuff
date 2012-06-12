@@ -15,11 +15,14 @@ class TripAPI {
 
 		// Strip empty parts and find offset
 		$parts = array();
-		$offset = 0;
+		$offsets = array();
 		foreach ($uri_parts as $index => $part) {
 			if($part == 'offset') {
-				$offset = $uri_parts[$index + 1];
+				$label = $uri_parts[$index + 1];
+				$amount = $uri_parts[$index + 2];
 				unset($uri_parts[$index + 1]);
+				unset($uri_parts[$index + 2]);
+				$offsets[$label] = $amount;
 			} elseif($part !== '') {
 				$parts[] = $part;
 			} 
@@ -63,13 +66,14 @@ class TripAPI {
 				parse_str(file_get_contents('php://input'), $put_vars);
 				$data = $put_vars;
 				break;
-			default: $data = array();
+			default: 
+				$data = array();
 		}
 
 		require_once('resource.class.php');
 		require_once($resource . '.resource.php');
 
-		$obj = new $resource($method, $id, $offset, $data, $parent, $pid);
+		$obj = new $resource($method, $id, $offsets, $data, $parent, $pid);
 		$this->data = $obj->data;
 	}
 } 

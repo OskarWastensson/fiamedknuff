@@ -8,9 +8,9 @@ Class Moves extends Resource {
 		$this->params = array(
 			'table' => 'moves',
 			'view' => 'moves',
-			'view_fields' => 'id, player_id, date_moved, steps, piece',
-			'put_fields' => 'id, player_id, date_moved, steps, piece',
-			'post_fields' =>	'player_id, date_moved, steps, piece',
+			'view_fields' => 'id, players_id, date_moved, steps, piece',
+			'put_fields' => 'id, players_id, date_moved, steps, piece',
+			'post_fields' =>	'players_id, date_moved, steps, piece',
 		);
 	}
 }
