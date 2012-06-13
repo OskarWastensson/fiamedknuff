@@ -28,6 +28,45 @@ span {
 	margin: 0px 6px 5px 0;
 }
 
+#diceArea{
+	width: 160px;
+	height: 120px;
+	float: right;
+	margin-right: 5%;
+	margin-top: 5%;
+	border: 1px solid black;
+}
+
+	#dice{
+		width: 60px;
+		height: 60px;
+		margin: auto;
+		margin-top: 25px;
+		border: 1px solid black;
+	}
+	
+		#dice #diceValue{
+			margin: auto auto;
+			margin-top: 15px;
+			width: 50%;
+			height: 50%;
+			text-align: center;
+		}
+	
+	#diceMessage{
+		width: 90%;
+		height: 20px;
+		border: 1px solid black;
+		margin: auto;
+		margin-top: 5px;
+		text-align: center;
+	}
+	
+		#diceMessage p{
+			margin: 0;
+			padding: 0;
+		}
+
 .topWrapper, .bottomWrapper {
 	width: 160px;
 	float: left;
