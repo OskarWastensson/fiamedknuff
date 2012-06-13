@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `games` (
 
 CREATE TABLE IF NOT EXISTS `moves` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
-  `player_id` int(20) NOT NULL,
+  `players_id` int(20) NOT NULL,
   `date_moved` datetime NOT NULL,
   `steps` int(2) NOT NULL,
   `piece` int(2) NOT NULL,
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS `moves` (
 CREATE TABLE IF NOT EXISTS `players` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `color` varchar(50) COLLATE utf8_bin NOT NULL,
-  `game_id` int(20) NOT NULL,
-  `user_id` int(20) NOT NULL,
+  `games_id` int(20) NOT NULL,
+  `users_id` int(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `game_id` (`game_id`)
