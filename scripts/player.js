@@ -1,10 +1,8 @@
-function Player(no) {
+Player = function (no) {
 
-	var pieces, no, colorName,
-		markOptions, unMarkOptions, isWin;
+	var pieces, colorName;
 
 	// Constructor actions
-
 	switch(no) {
 	case 0: 
 		colorName = 'green';
@@ -45,33 +43,36 @@ function Player(no) {
 			'piece' + colorName + '3'
 		)
 	];
+	
+	// Object functions
+	return {
 
-	// Functions
+		// Puts a glow around pieces that can be moved and 
+		// waits for the player to click.
+		markOptions: function (steps) {
+			$.each(pieces, function (piece) {
+				if (piece.canMove(steps)) {
+					piece.element.addClass('glow');
+					piece.element.click(function () {
+						unMarkOptions();
+						piece.move(steps);
+					});
+				}
+			});
+		},
 
-	// Puts a glow around pieces that can be moved and 
-	// waits for the player to click.
-	markOptions = function (steps) {
-		$.each(pieces, function (piece) {
-			if (piece.canMove(steps)) {
-				piece.element.addClass('glow');
-				piece.element.click(function () {
-					unMarkOptions();
-					piece.move(steps);
-				});
-			}
-		});
-	};
-
-	// Removes the glow around pieces that can be moved and 
-	// stops waiting for the player to click.
-	unMarkOptions = function () {
-		$.each(pieces, function (piece) {
-			piece.element.removeClass('glow');
-			piece.element.unbind('click');
-		});
-	};
-
-	isWin = function () {
-
-	};
+		// Removes the glow around pieces that can be moved and 
+		// stops waiting for the player to click.
+		unMarkOptions: function () {
+			$.each(pieces, function (piece) {
+				piece.element.removeClass('glow');
+				piece.element.unbind('click');
+			});
+		},
+		
+		// Checks if player has won the game
+		isWin: function () {
+			
+		}	
+	}	
 }

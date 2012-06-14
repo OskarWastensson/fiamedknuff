@@ -28,6 +28,28 @@ span {
 	margin: 0px 6px 5px 0;
 }
 
+span.redPiece {
+	background: url('../images/red-piece.png');
+}
+
+span.bluePiece {
+	background: url('../images/blue-piece.png');
+}
+
+span.greenPiece {
+	background: url('../images/green-piece.png');
+}
+
+span.yellowPiece {
+	background: url('../images/yellow-piece.png');
+}
+
+#glow {
+	-webkit-box-shadow: 0 0 15px #333; 
+	-moz-box-shadow: 0 0 15px #333; 
+	box-shadow:0 0 15px #333; 
+}
+
 #diceArea{
 	width: 160px;
 	height: 120px;
