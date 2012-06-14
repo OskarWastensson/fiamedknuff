@@ -1,10 +1,20 @@
 // This file conatins all logic relating to a peice
 
-var Piece = function (brick, player) {
-	var canMove, isCrash, canSprint, isAtGoal, 
+var Piece = function (brick, player, elementName) {
+	var element, canMove, isCrash, canSprint, isAtGoal, 
 		move, Crash, startSprint, makeGoal,
-		currentBrick = brick;
+		createElement, currentBrick = brick;
 	
+	// Constructor actions
+	element = $('<span />')
+		.attr('id', elementName)
+		.addClass('piece')
+		.addClass(player.colorName + '_piece')
+		.offset(brick.position);
+	
+	$('#boardWrapper').append(element);
+	
+	// Functions
 	canMove = function (steps) {
 		var brick, exit = false;
 		// Test if the piece is at home

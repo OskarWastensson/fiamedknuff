@@ -1,8 +1,9 @@
+var player, bricks;
+
 $(document).ready(function() {
 	
 
-
-	var bricks = {};
+	var bricks = [];
 
 	$(".boardWrapper span.outer-bricks").each(function() {
 		var span = $(this);
@@ -11,8 +12,10 @@ $(document).ready(function() {
 		bricks[val] = span;
 
 	})
+
+	player = new Player(0);
 	
-	//Varje bricka måste veta vilka grannar den har.
+	// Varje bricka måste veta vilka grannar den har.
 
 
 	function GameBoard() {
@@ -20,7 +23,6 @@ $(document).ready(function() {
 	}
 
 
-	var bricks = [];
 
 	$('.boardWrapper span').each(function() {
 		
