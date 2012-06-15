@@ -1,6 +1,6 @@
-Player = function (no) {
+var Player = function (no) {
 
-	var pieces, colorName;
+	var colorName;
 
 	// Constructor actions
 	switch(no) {
@@ -19,38 +19,39 @@ Player = function (no) {
 	default:
 		return false;
 	}
-
-	// Piece objects
-	pieces = [
-		new Piece(
-			bricks['start' + colorName + '0'], 
-			this, 
-			'piece' + colorName + '0'
-		),
-		new Piece(
-			bricks['start' + colorName + '1'], 
-			this,
-			'piece' + colorName + '1'
-		),
-		new Piece(
-			bricks['start' + colorName + '2'], 
-			this,
-			'piece' + colorName + '2'
-		),
-		new Piece(
-			bricks['start' + colorName + '3'], 
-			this,
-			'piece' + colorName + '3'
-		)
-	];
 	
-	// Object functions
 	return {
+		// Properties
+		colorName: colorName,
+		pieces: [
+			new Piece(
+				bricks['start' + colorName + '0'], 
+				this, 
+				'piece' + colorName + '0'
+			),
+			new Piece(
+				bricks['start' + colorName + '1'], 
+				this,
+				'piece' + colorName + '1'
+			),
+			new Piece(
+				bricks['start' + colorName + '2'], 
+				this,
+				'piece' + colorName + '2'
+			),
+			new Piece(
+				bricks['start' + colorName + '3'], 
+				this,
+				'piece' + colorName + '3'
+			)
+		],
 
+		// Methods
+	
 		// Puts a glow around pieces that can be moved and 
 		// waits for the player to click.
 		markOptions: function (steps) {
-			$.each(pieces, function (piece) {
+			$.each(this.pieces, function (piece) {
 				if (piece.canMove(steps)) {
 					piece.element.addClass('glow');
 					piece.element.click(function () {
@@ -64,7 +65,7 @@ Player = function (no) {
 		// Removes the glow around pieces that can be moved and 
 		// stops waiting for the player to click.
 		unMarkOptions: function () {
-			$.each(pieces, function (piece) {
+			$.each(this.pieces, function (piece) {
 				piece.element.removeClass('glow');
 				piece.element.unbind('click');
 			});
