@@ -13,9 +13,20 @@ $(document).ready(function() {
 
 	})
 
-	player = new Player(0);
-	
+
 	// Varje bricka måste veta vilka grannar den har.
+
+	var current 		= bricks[0],
+		currentValue 	= current.attr('value'),
+		nextValue		= parseInt(currentValue)+1;
+
+
+		console.log(nextValue);
+
+	
+	//Vi måste vilken som är current brick
+	//Varje bricka måste veta vilka grannar den har. 
+	//När man kommer in på sprint så ändras reglerna.
 
 
 	function GameBoard() {
@@ -34,26 +45,5 @@ $(document).ready(function() {
 
 	});
 
-
-	// function Game (){
-		
-	// }
-
-	// var bricks = [];
-	// var attr = $(".gameBoard span").hasAttr('class');
-	// console.log(attr);
-
-
-
-	// function Brick(steps, direction){
-	// 	this.classAttr = $(".boardWrapper span").attr("class");
-	// 	console.log(this.classAttr);
-
-	// 	// this.nextBrick = this+1;
-	// 	// this.previousBrick = this-1;
-	// 	// document.getElementsByTagName("");
-	// }
-
-	// 	console.log($('.boardWrapper span'));
 
 })
