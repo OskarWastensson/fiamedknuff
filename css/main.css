@@ -26,12 +26,14 @@ span {
 	display: block;
 	float: left;
 	margin: 0px 6px 5px 0;
+	visibility: hidden;
 }
 
 span.piece {
 	z-index: 9;
 	position: absolute;
-
+	visibility: visible;
+	border: none;
 }
 
 span.redPiece {
@@ -58,10 +60,8 @@ span.yellowPiece {
 	background-position: center;
 }
 
-#glow {
-	-webkit-box-shadow: 0 0 15px #333; 
-	-moz-box-shadow: 0 0 15px #333; 
-	box-shadow:0 0 15px #333; 
+span.moveable {
+	border: solid 2px red;
 }
 
 #diceArea {

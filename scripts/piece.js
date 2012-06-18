@@ -5,6 +5,7 @@ var Piece = function (brick, player, elementName) {
 	return {
 		// Properties
 		currentBrick: brick,
+		player: player,
 		
 		element: $('<span />')
 			.attr('id', elementName)
@@ -34,9 +35,8 @@ var Piece = function (brick, player, elementName) {
 			brick = this.currentBrick;
 			for (var i = 1; i <= steps; i += 1) {
 				brick = brick.next();
-				console.log(brick.pieces);
 				$.each(brick.pieces, function (key, piece) {
-					if (piece.player == player) {
+					if (piece.player === player) {
 						exit = true;
 					};
 				});
@@ -60,7 +60,7 @@ var Piece = function (brick, player, elementName) {
 		},
 
 		move: function (steps) {
-
+			alert('move ' + steps + 'steps!');
 		},
 
 		crash: function () {

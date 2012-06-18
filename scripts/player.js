@@ -32,7 +32,7 @@ var Player = function (no) {
 			var playerObject = this;
 			$.each(this.pieces, function (key, piece) {
 				if (piece.canMove(steps)) {
-					piece.element.addClass('glow');
+					piece.element.addClass('moveable');
 					piece.element.click(function () {
 						playerObject.unMarkOptions();
 						piece.move(steps);
