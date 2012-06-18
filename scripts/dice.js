@@ -18,6 +18,7 @@ onload = function(){
 	function updateDice(){
 		diceRoll = Math.floor((Math.random()*6)+1);
 	    diceDrawArea.innerHTML = diceRoll;
+		player.markOptions(diceRoll);
 	}
 	
 	function returnDiceValue(){
@@ -26,7 +27,7 @@ onload = function(){
 
 	function getGameState(){
 		
-		//Yaddayadda, hämta vem som spelar just nu, är det rätt, har han redan klickat på tärningen?
+		//Yaddayadda, hï¿½mta vem som spelar just nu, ï¿½r det rï¿½tt, har han redan klickat pï¿½ tï¿½rningen?
 		var correctPlayer = true;
 		
 		return correctPlayer;

@@ -28,20 +28,34 @@ span {
 	margin: 0px 6px 5px 0;
 }
 
+span.piece {
+	z-index: 9;
+	position: absolute;
+
+}
+
 span.redPiece {
 	background: url('../images/red-piece.png');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 span.bluePiece {
 	background: url('../images/blue-piece.png');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 span.greenPiece {
 	background: url('../images/green-piece.png');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 span.yellowPiece {
-	background: url('../images/yellow-piece.png');
+	background: url('../images/yellow-piece.png');	
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 #glow {
@@ -50,7 +64,7 @@ span.yellowPiece {
 	box-shadow:0 0 15px #333; 
 }
 
-#diceArea{
+#diceArea {
 	width: 160px;
 	height: 120px;
 	float: right;
@@ -59,7 +73,7 @@ span.yellowPiece {
 	border: 1px solid black;
 }
 
-	#dice{
+	#dice {
 		width: 60px;
 		height: 60px;
 		margin: auto;
@@ -67,7 +81,7 @@ span.yellowPiece {
 		border: 1px solid black;
 	}
 	
-		#dice #diceValue{
+		#dice #diceValue {
 			margin: auto auto;
 			margin-top: 15px;
 			width: 50%;

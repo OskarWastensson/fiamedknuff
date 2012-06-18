@@ -1,59 +1,34 @@
-var player, bricks;
+var player, bricks = {};
 
 $(document).ready(function() {
-	
-
-	var bricks = [];
 
 	$(".boardWrapper span.outer-bricks").each(function() {
-		var span = $(this);
-		var val = $(this).attr("value");
-		
-		bricks[val] = span;
-
+		var val = 'brick' + $(this).attr("value");
+		bricks[val] = new Brick($(this).attr("value"), $(this));
 	})
-
-	player = new Player(0);
 	
 	// Varje bricka måste veta vilka grannar den har.
 
+	function Brick (id, element) {
+		var newId;
+		
+		return {
+			id: id,
+			element: element,
+			pieces: [],
+			next: function () {
 
-	function GameBoard() {
-		this.next = current+1;
+				if (this.id === 39) {
+					newId = 0;
+				} else {
+					newId = +this.id + 1;
+				}
+				return bricks['brick' + newId];
+			}			
+		}
 	}
 
-
-
-	$('.boardWrapper span').each(function() {
-		
-		if( $(this).has('value') ){
-			
-			bricks.push($(this));	
-
-		}
-
-	});
-
-
-	// function Game (){
-		
-	// }
-
-	// var bricks = [];
-	// var attr = $(".gameBoard span").hasAttr('class');
-	// console.log(attr);
-
-
-
-	// function Brick(steps, direction){
-	// 	this.classAttr = $(".boardWrapper span").attr("class");
-	// 	console.log(this.classAttr);
-
-	// 	// this.nextBrick = this+1;
-	// 	// this.previousBrick = this-1;
-	// 	// document.getElementsByTagName("");
-	// }
-
-	// 	console.log($('.boardWrapper span'));
-
+	player = new Player(0);
+	player.start();
+	
 })

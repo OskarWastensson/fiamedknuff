@@ -1,7 +1,7 @@
 // This file conatins all logic relating to a peice
 
 var Piece = function (brick, player, elementName) {
-	
+
 	return {
 		// Properties
 		currentBrick: brick,
@@ -9,12 +9,13 @@ var Piece = function (brick, player, elementName) {
 		element: $('<span />')
 			.attr('id', elementName)
 			.addClass('piece')
-			.addClass(player.colorName + '_piece')
-			.offset(brick.position),
+			.addClass(player.colorName + 'Piece')
+			.offset(brick.element.offset()),
 		
 		// Methods
 		showElement: function () {
-			$('#boardWrapper').append(element);
+			$('.boardWrapper').append(this.element);
+			this.currentBrick.pieces.push(this); 
 		},
 		
 		canMove: function (steps) {
@@ -31,9 +32,10 @@ var Piece = function (brick, player, elementName) {
 			// Test if any of the bricks on the path contains 
 			// a peice of the same player
 			brick = this.currentBrick;
-			for (var i = 1; i < steps; i += 1) {
-				brick = brick.nextBrick; // OR something..
-				$.foreach(brick.pieces, function (piece) {
+			for (var i = 1; i <= steps; i += 1) {
+				brick = brick.next();
+				console.log(brick.pieces);
+				$.each(brick.pieces, function (key, piece) {
 					if (piece.player == player) {
 						exit = true;
 					};
