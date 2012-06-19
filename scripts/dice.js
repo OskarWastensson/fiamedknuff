@@ -18,6 +18,7 @@ onload = function(){
 	function updateDice(){
 		diceRoll = Math.floor((Math.random()*6)+1);
 	    diceDrawArea.innerHTML = diceRoll;
+	    diceDrawArea.background = "url('../images/dice"+diceRoll+".png')";
 	}
 	
 	function returnDiceValue(){
@@ -38,6 +39,5 @@ onload = function(){
 		
 		messageBox.innerHTML = text;
 	}
-	
 	
 };

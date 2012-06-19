@@ -1,7 +1,105 @@
 body { 
 	margin: 0;
 	padding: 0; 
+	font-family: 'Francois One', sans-serif;
+	background: #FFF0E0;
 }
+
+h1 {
+	margin: 0 auto;
+	display: block;
+}
+
+/*--RIBBON--*/
+
+ .ribbon-wrapper {
+	position: relative;
+	left: 50%;
+	margin: 20px 0 30px -150px;
+	text-align: center;
+	display: inline-block;
+}
+  .ribbon-front {
+	background-color: #5CADB8;	height: 50px;
+	width: 360px;
+	position: relative;
+	left:-30px;
+	top: -21px;
+	z-index: 2;
+}
+
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-topright,
+  .ribbon-edge-bottomleft,
+  .ribbon-edge-bottomright {
+	position: absolute;
+	z-index: 1;
+	border-style:solid;
+	height:0px;
+	width:0px;
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-topright {
+}
+
+  .ribbon-edge-bottomleft,
+  .ribbon-edge-bottomright {
+	top: 50px;
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-bottomleft {
+	left: -30px;
+	border-color: transparent #315D64 transparent transparent;
+}
+
+  .ribbon-edge-topleft {
+	top: 0px;
+	border-width: 0px 30px 0 0;
+}
+  .ribbon-edge-bottomleft {
+	border-width: 0 30px 30px 0;
+}
+
+  .ribbon-edge-topright,
+  .ribbon-edge-bottomright {
+	left: 300px;
+	border-color: transparent transparent transparent #315D64;
+}
+
+  .ribbon-edge-topright {
+	top: 0px;
+	border-width: 0px 0 0 30px;
+}
+  .ribbon-edge-bottomright {
+	border-width: 0 0 30px 30px;
+}
+
+  .ribbon-back-left {
+	position: absolute;
+	top: 30px;
+	left: -70px;
+	width: 70px;
+	height: 50px;
+	background-color: #4F939E;	z-index: 0;
+}
+
+  .ribbon-back-right {
+	position: absolute;
+	top: 30px;
+	left: 300px;
+	width: 70px;
+	height: 50px;
+	background-color: #4F939E;	z-index: 0;
+}
+
+
+
+
+
+/*BOARD*/
 
 div.boardWrapper{
 	margin: 0 auto;
@@ -56,22 +154,20 @@ span.yellowPiece {
 	float: right;
 	margin-right: 5%;
 	margin-top: 5%;
-	border: 1px solid black;
 }
 
 	#dice{
-		width: 60px;
-		height: 60px;
+		width: 100px;
+		height: 100px;
 		margin: auto;
 		margin-top: 25px;
-		border: 1px solid black;
+		background: url('../images/dice1.png') no-repeat 0 0;
 	}
 	
 		#dice #diceValue{
 			margin: auto auto;
-			margin-top: 15px;
-			width: 50%;
-			height: 50%;
+			width: 100px;
+			height: 100px;
 			text-align: center;
 		}
 	
