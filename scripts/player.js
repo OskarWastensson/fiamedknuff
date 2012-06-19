@@ -45,7 +45,7 @@ var Player = function (no) {
 		// stops waiting for the player to click.
 		unMarkOptions: function () {
 			$.each(this.pieces, function (key, piece) {
-				piece.element.removeClass('glow');
+				piece.element.removeClass('moveable');
 				piece.element.unbind('click');
 			});
 		},
@@ -58,17 +58,17 @@ var Player = function (no) {
 		start: function () {
 			this.pieces = [
 				new Piece(
-					bricks.brick20, 
+					bricks.brick0, 
 					this, 
 					'piece' + colorName + '0'
 				),
 				new Piece(
-					bricks.brick21, 
+					bricks.brick3, 
 					this,
 					'piece' + colorName + '1'
 				),
 				new Piece(
-					bricks.brick22, 
+					bricks.brick10, 
 					this,
 					'piece' + colorName + '2'
 				),

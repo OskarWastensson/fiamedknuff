@@ -60,7 +60,20 @@ var Piece = function (brick, player, elementName) {
 		},
 
 		move: function (steps) {
-			alert('move ' + steps + 'steps!');
+			var location;
+			for (var i = 1; i <= steps; i += 1) {
+				this.currentBrick = this.currentBrick.next();
+				location = this.currentBrick.element.offset();
+				this.element.animate(
+					{
+						top: location.top,
+						left: location.left
+					},
+					{
+						queue: true,
+						duration: 200
+					});
+			}
 		},
 
 		crash: function () {
