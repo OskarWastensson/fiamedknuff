@@ -114,3 +114,88 @@ span.moveable {
 	float: left;
 	height: 159px;
 }
+
+/*--RIBBON--*/
+
+ .ribbon-wrapper {
+	position: relative;
+	left: 50%;
+	margin: 20px 0 30px -150px;
+	text-align: center;
+	display: inline-block;
+}
+  .ribbon-front {
+	background-color: #5CADB8;	height: 50px;
+	width: 360px;
+	position: relative;
+	left:-30px;
+	top: -21px;
+	z-index: 2;
+}
+
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-topright,
+  .ribbon-edge-bottomleft,
+  .ribbon-edge-bottomright {
+	position: absolute;
+	z-index: 1;
+	border-style:solid;
+	height:0px;
+	width:0px;
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-topright {
+}
+
+  .ribbon-edge-bottomleft,
+  .ribbon-edge-bottomright {
+	top: 50px;
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-bottomleft {
+	left: -30px;
+	border-color: transparent #315D64 transparent transparent;
+}
+
+  .ribbon-edge-topleft {
+	top: 0px;
+	border-width: 0px 30px 0 0;
+}
+  .ribbon-edge-bottomleft {
+	border-width: 0 30px 30px 0;
+}
+
+  .ribbon-edge-topright,
+  .ribbon-edge-bottomright {
+	left: 300px;
+	border-color: transparent transparent transparent #315D64;
+}
+
+  .ribbon-edge-topright {
+	top: 0px;
+	border-width: 0px 0 0 30px;
+}
+  .ribbon-edge-bottomright {
+	border-width: 0 0 30px 30px;
+}
+
+  .ribbon-back-left {
+	position: absolute;
+	top: 30px;
+	left: -70px;
+	width: 70px;
+	height: 50px;
+	background-color: #4F939E;	z-index: 0;
+}
+
+  .ribbon-back-right {
+	position: absolute;
+	top: 30px;
+	left: 300px;
+	width: 70px;
+	height: 50px;
+	background-color: #4F939E;	z-index: 0;
+}
