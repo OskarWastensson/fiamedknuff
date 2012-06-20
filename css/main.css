@@ -64,28 +64,26 @@ span.moveable {
 	border: solid 2px red;
 }
 
-#diceArea {
+#diceArea{
 	width: 160px;
 	height: 120px;
 	float: right;
 	margin-right: 5%;
 	margin-top: 5%;
-	border: 1px solid black;
 }
 
-	#dice {
-		width: 60px;
-		height: 60px;
+	#dice{
+		width: 100px;
+		height: 100px;
 		margin: auto;
 		margin-top: 25px;
-		border: 1px solid black;
+		background: url('../images/dice1.png') no-repeat 0 0;
 	}
 	
-		#dice #diceValue {
+		#dice #diceValue{
 			margin: auto auto;
-			margin-top: 15px;
-			width: 50%;
-			height: 50%;
+			width: 100px;
+			height: 100px;
 			text-align: center;
 		}
 	
