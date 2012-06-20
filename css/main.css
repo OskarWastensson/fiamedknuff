@@ -15,7 +15,6 @@ div.boardWrapper{
 div.home {
 	width: 210px;
 	height: 200px;
-	border: 1px solid black;
 	float: left;
 }
 
@@ -61,7 +60,9 @@ span.yellowPiece {
 }
 
 span.moveable {
-	border: solid 2px red;
+	border: solid 2px green;
+	border-radius: 25px;
+	box-shadow: inset 1px -2px 5px green;
 }
 
 #diceArea{
