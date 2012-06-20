@@ -62,7 +62,13 @@ var Piece = function (brick, player, elementName) {
 		move: function (steps) {
 			var location;
 			for (var i = 1; i <= steps; i += 1) {
+				$.each(this.currentBrick.pieces, function(key, piece) {
+					if (piece === this) {
+						this.currentBrick.pieces.splice(key, 1);
+					}
+				});
 				this.currentBrick = this.currentBrick.next();
+				this.currentBrick.pieces.push(this);
 				location = this.currentBrick.element.offset();
 				this.element.animate(
 					{

@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	$(".boardWrapper span.outer-bricks").each(function() {
 		var val = 'brick' + $(this).attr("value");
+		console.log(val);
 		bricks[val] = new Brick($(this).attr("value"), $(this));
 	})
 	
@@ -23,6 +24,8 @@ $(document).ready(function() {
 				} else {
 					newId = +this.id + 1;
 				}
+				console.log(newId);
+				console.log(bricks['brick' + newId]);
 				return bricks['brick' + newId];
 			}			
 		}
