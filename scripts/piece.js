@@ -34,7 +34,13 @@ var Piece = function (brick, player, elementName) {
 			// a peice of the same player
 			brick = this.currentBrick;
 			for (var i = 1; i <= steps; i += 1) {
-				brick = brick.next();
+				
+				if (+brick.id === +player.lapEnd) {
+					brick = bricks['brick' + player.sprintStart];
+				} else {
+					brick = brick.next();
+				}
+				
 				$.each(brick.pieces, function (key, piece) {
 					if (piece.player === player) {
 						exit = true;
@@ -62,12 +68,19 @@ var Piece = function (brick, player, elementName) {
 		move: function (steps) {
 			var location;
 			for (var i = 1; i <= steps; i += 1) {
+				
 				$.each(this.currentBrick.pieces, function(key, piece) {
 					if (piece === this) {
 						this.currentBrick.pieces.splice(key, 1);
 					}
 				});
-				this.currentBrick = this.currentBrick.next();
+				if (+this.currentBrick.id === +player.lapEnd) {
+					this.currentBrick = bricks['brick' + player.sprintStart];
+				} else {
+					this.currentBrick = this.currentBrick.next();
+				}
+
+				
 				this.currentBrick.pieces.push(this);
 				location = this.currentBrick.element.offset();
 				this.element.animate(

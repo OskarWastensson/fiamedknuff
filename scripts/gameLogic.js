@@ -2,13 +2,12 @@ var player, bricks = {};
 
 $(document).ready(function() {
 
-	$(".boardWrapper span.outer-bricks").each(function() {
+	
+	$(".boardWrapper span.bricks").each(function() {
 		var val = 'brick' + $(this).attr("value");
-		console.log(val);
 		bricks[val] = new Brick($(this).attr("value"), $(this));
 	})
 	
-	// Varje bricka måste veta vilka grannar den har.
 
 	function Brick (id, element) {
 		var newId;
@@ -17,15 +16,31 @@ $(document).ready(function() {
 			id: id,
 			element: element,
 			pieces: [],
+			
 			next: function () {
-
-				if (this.id === 39) {
+				
+				switch (+this.id) {
+				case 39:
 					newId = 0;
-				} else {
+					break;
+				case 43:
+					newId = 100;
+					break;
+				case 53:
+					newId = 100;
+					break;
+				case 63:
+					newId = 100;
+					break;
+				case 73:
+					newId = 100;
+					break;
+				case 100:
+					newId = 100;
+					break;
+				default:
 					newId = +this.id + 1;
 				}
-				console.log(newId);
-				console.log(bricks['brick' + newId]);
 				return bricks['brick' + newId];
 			}			
 		}

@@ -1,19 +1,31 @@
 var Player = function (no) {
-	var colorName;
+	var colorName, sprintStart, lapStart, lapEnd;
 
 	// Constructor actions
 	switch(no) {
 	case 0: 
 		colorName = 'green';
+		lapEnd = 39;
+		lapStart = 0;
+		sprintStart = 70;
 		break;
 	case 1:
 		colorName = 'yellow';
+		lapEnd = 9;
+		lapStart = 10;
+		sprintStart = 50;
 		break;
 	case 2: 
 		colorName = 'blue';
+		lapEnd = 19;
+		lapStart = 20;
+		sprintStart = 40;
 		break;
 	case 3:
 		colorName = 'red';
+		lapEnd = 29;
+		lapStart = 30;
+		sprintStart = 60;
 		break;
 	default:
 		return false;
@@ -22,6 +34,9 @@ var Player = function (no) {
 	return {
 		// Properties
 		colorName: colorName,
+		sprintStart: sprintStart,
+		lapStart: lapStart,
+		lapEnd: lapEnd,
 		pieces: [],
 
 		// Methods
@@ -73,7 +88,7 @@ var Player = function (no) {
 					'piece' + colorName + '2'
 				),
 				new Piece(
-					bricks.brick23, 
+					bricks.brick39, 
 					this,
 					'piece' + colorName + '3'
 				)
