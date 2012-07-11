@@ -135,9 +135,8 @@ abstract class Resource{
  
 	// Inserts data in an SQL table.
 	function post($data) {
-
 		// Turn fields list and data into sql query part
-		$fields = explode(', ',$this->params['post_fields']);
+		$fields = explode(', ', $this->params['post_fields']);
 		$update_fields = array();
 		foreach($fields as $field){
 			if (isset($data[$field])){
@@ -238,4 +237,34 @@ abstract class Resource{
 		mysql_query($query);
 	}
 }
+
+
+// constants
+const REQUEST_ERROR = 1;
+const DB_ERROR = 2;
+const EMPTY_SET = 3;
+const ACCESS_RESTRICTED = 4;
+
+// Just an error handling function
+function error($no, $return_data = array()) {
+	// Which is not needed in this project
+	
+	//switch($no) {
+	//case EMPTY_SET: 
+	//	return $return_data + array("error" => "EMPTY_SET");
+	//case REQUEST_ERROR: 
+	//	header("HTTP/1.0 404 Not Found");
+	//	return $return_data + array("error" => "REQUEST_ERROR");
+	//case DB_ERROR:
+	//	header("HTTP/1.0 500 Internal server error");
+	//	return $return_data + array("error" => "DB_ERROR");
+	//case ACCESS_RESTRICTED:
+	//	header("HTTP/1.0 401 Unauthorized");
+	//	return $return_data + array("error" => "ACCESS_RESTRICTED");
+	//default:
+	//	header("HTTP/1.0 500 Internal server error");
+	//	return $return_data + array("error" => "Unknown error");
+	//}
+}
+
 ?>

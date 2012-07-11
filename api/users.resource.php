@@ -7,7 +7,7 @@ Class Users extends Resource {
 			'view' => 'users',
 			'view_fields' => 'id, name, email',
 			'put_fields' => 'id, name, email',
-			'post_fields' => 'name, email',
+			'post_fields' => 'id, name, email',
 			'child_resources' => 'players'
 		);
 	}

@@ -1,7 +1,7 @@
 body { 
 	margin: 0;
 	padding: 0;
-	background-image: url(../images/stripebg.png); 
+	background-color: #fafafa; 
 }
 
 div.boardWrapper{
@@ -9,8 +9,8 @@ div.boardWrapper{
 	width: 600px;
 	height: 600px;
 	display: block;
-	background: url('../images/board copy.png') 0 0 no-repeat;
-	padding: 0px;
+	background: url('../images/board.png') 0 0 no-repeat;
+	padding: 11px;
 	border: solid 1px black;
 	box-shadow: 0px 0px 10px;
 	margin-bottom: 10px;

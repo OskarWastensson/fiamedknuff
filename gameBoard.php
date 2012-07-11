@@ -1,6 +1,23 @@
+<?php
+	include 'fb_sdk/facebook.php';
+	
+    // Create our Application instance
+	$facebook = new Facebook(array(
+		'appId'  => '457681907583102',
+		'secret' => 'b79fb3d1e561e78a0cee608d9926cad5',
+	));
+
+	// Get User ID
+	$user = $facebook->getUser();
+
+	// Login 
+	if (!$user) {
+		header('Location: ' . $facebook->getLoginUrl());
+	}
+?>
 <html>
 <head>
-	<title>Fia med Knuff</title>
+	<title>Ludo</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script type="text/javascript" src="scripts/jquery-1.7.1.js"></script>
 	<script type="text/javascript" src="scripts/gameLogic.js"></script>
@@ -9,10 +26,9 @@
 	<script type="text/javascript" src="scripts/player.js"></script>
 </head>
 <body>
-
 	<div class="ribbon-wrapper">
 		<div class="ribbon-front">
-			<h1>FIA WITH PUSH</h1>
+			<h1>Ludo</h1>
 		</div>
 		<div class="ribbon-edge-topleft"></div>
 		<div class="ribbon-edge-topright"></div>
